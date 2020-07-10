@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.ds-pay {
+    display: flex;
+}
+
+.jsf-c-ctr {
+    justify-content: center;
+}
+
+.jsf-c-fx-strt {
+    justify-content: flex-start;
+}
+
+.jsf-c-fx-end {
+    justify-content: flex-end;
+}
+
+.jsf-c-sp-bet {
+    justify-content: space-between;
+}
+
+.jsf-c-sp-ard {
+    justify-content: space-around;
+}
+
+.fx-wrap {
+    flex-wrap: wrap;
+}
+
+.fx-wrap-n {
+    flex-direction: nowrap;
+}
+
+.fx-dcrtion-r {
+    flex-direction: row;
+}
+
+.fx-dcrtion-r-r {
+    flex-direction: row-reverse;
+}
+
+.fx-dcrtion-c {
+    flex-direction: column;
+}
+
+.fx-dcrtion-c-r {
+    flex-direction: column-reverse;
+}
+
+.mg-rit {
+    margin-right: 5px;
+}
+
+.hover {
+    cursor: pointer;
+}
+
+.pstin-alt {
+    position: absolute;
+}
+
+.pstin-rltve {
+    position: relative;
+}
+
+.bdr {
+    border: 1px solid black;
+}
+
+.aln-itms-f-start {
+    align-items: flex-start;
+}
+
+.aln-itms-f-end {
+    align-items: flex-end;
+}
+
+.aln-itms-c {
+    align-items: center;
+}
+
+.position-r {
+    position: relative;
+}
+
+.position-a {
+    position: absolute;
+}
+
+.ft-sz-14 {
+    font-size: 14px;
+}
+
+.cor-red {
+    color: red;
+}

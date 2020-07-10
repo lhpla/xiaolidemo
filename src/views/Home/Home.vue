@@ -1,6 +1,6 @@
 <template>
-  <div>
-
+  <div class="ds-pay fx-dcrtion-c aln-itms-c">
+    <div class="dv"></div>
   </div>
 </template>
 
@@ -33,4 +33,9 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+.dv {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
 </style>

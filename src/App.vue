@@ -6,4 +6,5 @@
 </template>
 
 <style lang="scss">
+@import "../src/assets/base/base";
 </style>

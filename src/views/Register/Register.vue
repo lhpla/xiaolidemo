@@ -18,6 +18,12 @@
                     placeholder="请输入密码"
                     show-password></el-input>
         </el-form-item>
+        <el-form-item label="确认密码"
+                      prop="checkPass">
+          <el-input type="password"
+                    v-model="form.checkPass"
+                    autocomplete="off"></el-input>
+        </el-form-item>
         <el-form-item>
           <el-button type="primary"
                      style="width:30%;"
@@ -32,6 +38,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: '',
   props: {
@@ -50,15 +57,15 @@ export default {
         callback();
       }
     };
-    // let validatePass2 = (rule, value, callback) => {
-    //   if (value === "") {
-    //     callback(new Error("请再次输入密码"));
-    //      } else if (value !== this.form.password) {
-    //        callback(new Error("两次输入密码不一致!"));
-    //   } else {
-    //     callback();
-    //   }
-    // };
+    let validatePass2 = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请再次输入密码"));
+      } else if (value !== this.form.password) {
+        callback(new Error("两次输入密码不一致!"));
+      } else {
+        callback();
+      }
+    };
     return {
       form: {
         username: "",
@@ -76,6 +83,10 @@ export default {
           { validator: validatePass, trigger: "blur" },
           { min: 6, max: 15, message: "密码在6~15位", trigger: "blur" }
         ],
+        checkPass: [
+          { required: true, message: "两次输入密码不一致", trigger: "blur" },
+          { validator: validatePass2, trigger: "blur" }
+        ],
       }
     }
   },
@@ -84,7 +95,7 @@ export default {
       this.$router.push('/Login')
     },
     register () {
-      this, $router.ruleForm.validate(valid => {
+      this.$refs.form.validate(valid => {
         if (valid) {
           axios.post('/api/user/register', {
             username: this.form.username,
@@ -104,16 +115,17 @@ export default {
         }
       })
     },
-    mounted () {
+  },
+  mounted () {
 
-    },
-    watch: {
+  },
+  watch: {
 
-    },
-    computed: {
+  },
+  computed: {
 
-    }
   }
+
 }
 </script>
 

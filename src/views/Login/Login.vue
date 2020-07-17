@@ -38,7 +38,6 @@
         <!-- <el-form-item label="邮箱" prop="email">
         <el-input v-model="form.email" placeholder="请输入邮箱"></el-input>
       </el-form-item> -->
-
         <el-form-item>
           <el-button type="primary"
                      style="width:30%;"
@@ -54,6 +53,7 @@
 
 <script>
 import axios from 'axios'
+import dayjs from 'dayjs'
 export default {
   name: "",
   props: {},
@@ -85,7 +85,7 @@ export default {
         password: "",
         // email: "",
         checkPass: "",
-        code:''
+        code: ''
       },
       rules: {
         username: [
@@ -109,25 +109,64 @@ export default {
     };
   },
   methods: {
+    // login () {
+    //   this.$refs.form.validate(valid => {
+    //     if (valid) {
+    //       let user = {
+    //         username: this.form.username,
+    //         password: this.form.password,
+    //       }
+    //       console.log(this.form.username)
+    //       localStorage.setItem('user', JSON.stringify(user))
+    //       this.$message({
+    //         showClose: true,
+    //         message: '恭喜你，登录成功',
+    //         type: 'success'
+    //       });
+    //       this.$router.push('/')
+    //     } else {
+    //       this.$message.error("验证错误");
+    //     }
+    //   });
+    // },
     login () {
       this.$refs.form.validate(valid => {
         if (valid) {
-          let user = {
+          axios.post('/api/user/login', {
             username: this.form.username,
             password: this.form.password,
-          }
-          console.log(this.form.username)
-          localStorage.setItem('user', JSON.stringify(user))
-          this.$message({
-            showClose: true,
-            message: '恭喜你，登录成功',
-            type: 'success'
-          });
-          this.$router.push('/')
-        } else {
-          this.$message.error("验证错误");
+            code: this.form.code
+          }).then(res => {
+            if (res.data.code === 200) {
+              let nowtime=dayjs().format("YYYY年MM月DD日  HH时mm分ss秒")
+              this.$message.success(res.data.message)
+              let user = {
+                username: this.form.username,
+                password: this.form.password,
+                time:nowtime
+              }
+              console.log(user)
+              localStorage.setItem('user', JSON.stringify(user))
+              this.$message({
+                showClose: true,
+                message: '恭喜你，登录成功',
+                type: 'success'
+              });
+              this.$router.push('/')
+            }else if(res.data.code===1){
+              this.$message.warning(res.data.message)
+              this.form.code=''
+              this.$message({
+                showClose: false,
+                message: '验证失败',
+                type: 'danger'
+              })
+            }
+          }).catch(err => {
+            console.log(err)
+          })
         }
-      });
+      })
     },
     getData () {
       axios.get('/api/captcha').then(res => {

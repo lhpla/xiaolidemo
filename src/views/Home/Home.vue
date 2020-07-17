@@ -1,16 +1,17 @@
 <template>
-  <div class="ds-pay fx-dcrtion-c aln-itms-c">
-    <div class="dv"></div>
+  <div>
+    <!-- <Layout></Layout> -->
   </div>
 </template>
 
 <script>
+// import Layout from '../../views/Layout/Layout.vue'
 export default {
   name: '',
   props: {
   },
   components: {
-
+    // Layout,
   },
   data () {
     return {
@@ -33,9 +34,4 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.dv {
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-}
 </style>
